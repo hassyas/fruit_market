@@ -1,69 +1,54 @@
-# init harga dan stock
+
+# Input jumlah buah
+def input_fruit (name, stock, price):
+    while True:
+        n = int(input(f'Input jumlah {name.capitalize()}: '))
+        if n <= stock:
+            price = n * price
+            break
+        else:
+            print (f'Jumlah terlalu banyak. {name.capitalize()} sisa stock {stock}')
+    return price, n
+  
+# Stock buah
+sApel = 20
+sJeruk = 40
+sAnggur = 60
+
+# Init harga
 priceApel = 10000
 priceJeruk = 15000
 priceAnggur = 20000
 
-stockApel = 10
-stockJeruk = 15
-stockAnggur = 8
+# Hitung harga per buah
+totalPriceApel, nApel = input_fruit('Apel',sApel,priceApel)
+totalPriceJeruk, nJeruk = input_fruit('Jeruk',sJeruk,priceJeruk)
+totalPriceAnggur, nAnggur = input_fruit('Anggur',sAnggur,priceAnggur)
 
-#Deklarasi fungsi hitung buah
-def input_fruit(name, stock, price)
-    while True:
-        n = int(input(f' Input jumlah {name.capitalize()}:'))
-        if n <= stock:
-            price = n*price
-            break
-        else print(f"Jumlah terlalu banyak. {name.capitalize()} sisa{stock}")
-
-# init jumlah buah
-while True:
-    nApel = int(input("Input jumlah apel: "))
-    if nApel <= stockApel:
-        break
-    else:
-        print(f'Jumlah terlalu banyak. Apel sisa {stockApel}')
-
-while True:
-    nJeruk = int(input("Input jumlah jeruk: "))
-    if nJeruk <= stockJeruk:
-        break
-    else:
-        print(f'Jumlah terlalu banyak. Jeruk sisa {stockJeruk}')
-
-while True:
-    nAnggur = int(input("Input jumlah anggur: "))
-    if nAnggur <= stockAnggur:
-        break
-    else:
-        print(f'Jumlah terlalu banyak. Anggur sisa {stockAnggur}')
-
-# hitung harga per buah
-totalPriceApel = nApel * priceApel
-totalPriceJeruk = nJeruk * priceJeruk
-totalPriceAnggur = nAnggur * priceAnggur
-
-# hitung harga total buah
+# Hitung harga total buah
 priceTotal = totalPriceAnggur + totalPriceApel + totalPriceJeruk
 
-# show detail belanjaan
-print(
+# show
+print (
     f'''
-Detail Belanja 
+Detail Belanja
 
-Apel     :  {nApel} x {priceApel}
-Jeruk    :  {nJeruk} x {priceJeruk}
-Anggur   :  {nAnggur} x {priceAnggur}
-Total    :  {priceTotal}
+Apel : {nApel} x {priceApel} = Rp {totalPriceApel}
+Jeruk : {nJeruk} x {priceJeruk} = Rp {totalPriceJeruk}
+Anggur : {nAnggur} x {priceAnggur} = Rp {totalPriceAnggur}
+Total : Rp {priceTotal}
 '''
 )
 
-# proses pembayaran
 while True:
-    pay = int(input('Masukkan jumlah uang: '))
-    delta = pay - priceTotal
-    if delta >= 0:
-        print(f'Terima kasih. Uang kembalian {delta}')
+    npembayaran = (int(input('Silahkan masukan nominal uang untuk membayar: ')))
+    selisihpembayaran = npembayaran - priceTotal
+    if npembayaran < priceTotal:
+        print (f'Maaf jumlah kekurangan yang anda harus bayar adalah: Rp. {selisihpembayaran}')
+    elif npembayaran > priceTotal:
+        print(f'Terimakasih, berikut jumlah kembaliannya:Rp. {selisihpembayaran}')
         break
     else:
-        print(f'Uang anda kurang sebesar {abs(delta)}')
+        npembayaran == selisihpembayaran
+        print(f'Terimakasih')
+        break
